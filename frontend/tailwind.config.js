@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Paleta oficial Geopixel (idêntica ao dashboard-movidesk).
+        // Paleta de cores da marca (cards HUD, acento âmbar/verde).
         gp: {
           navy: "#172C51", // Dark Blue (primária)
           deep: "#0e1d38", // navy mais escuro (fundo command-center)
