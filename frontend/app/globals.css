@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  /* Command-center: navy profundo com brilho geoespacial e grade sutil. */
+  background-color: #0a1526;
+  background-image:
+    radial-gradient(1100px 600px at 78% -8%, rgba(63, 114, 138, 0.28), transparent 60%),
+    radial-gradient(900px 500px at 8% 4%, rgba(44, 73, 151, 0.22), transparent 55%),
+    linear-gradient(180deg, #0d1b30 0%, #0a1526 55%, #081120 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Textura de grade (nod ao GIS / malha urbana) sobre o fundo. */
+.grid-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(99, 190, 202, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 190, 202, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 25%, transparent 80%);
+  z-index: 0;
+}
+
+/* Scrollbar discreta na paleta. */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: rgba(63, 114, 138, 0.5);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track { background: transparent; }
+
+@layer components {
+  .panel {
+    background: linear-gradient(180deg, rgba(23, 44, 81, 0.55), rgba(14, 29, 56, 0.55));
+    border: 1px solid rgba(99, 190, 202, 0.14);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+  }
+
+  .menu {
+    background: #12244a;
+    background-image: linear-gradient(180deg, rgba(63, 114, 138, 0.12), transparent 60%);
+    border: 1px solid rgba(99, 190, 202, 0.2);
+    border-radius: 18px;
+  }
+
+  .accent-ribbon {
+    height: 4px;
+    background: linear-gradient(
+      90deg, #20446e, #2c4997, #3671b5, #489cd5, #63beca, #64b99b, #88c17a, #a3c368
+    );
+    background-size: 100% 100%;
+  }
+
+  /* ── Controles de formulário no tema escuro "sala de controle" ────── */
+  .gp-label {
+    @apply mb-1.5 block font-body text-[12.5px] font-semibold tracking-wide text-gp-darkgray;
+  }
+
+  .gp-input {
+    @apply w-full rounded-lg border border-gp-bar5/20 bg-gp-abyss/60 px-3 py-2 font-body
+      text-[14px] text-gp-lightgray placeholder:text-gp-darkgray/40 outline-none
+      transition focus:border-gp-bar4/70 focus:ring-2 focus:ring-gp-bar4/25;
+  }
+
+  select.gp-input option {
+    @apply bg-gp-deep text-gp-lightgray;
+  }
+
+  .gp-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-display
+      text-[13.5px] font-bold tracking-wide outline-none transition
+      focus-visible:ring-2 focus-visible:ring-gp-bar4/60 disabled:cursor-not-allowed
+      disabled:opacity-45;
+  }
+
+  .gp-btn-primary {
+    @apply gp-btn bg-gp-teal text-white hover:bg-gp-bar3 active:translate-y-px;
+  }
+
+  .gp-btn-ghost {
+    @apply gp-btn border border-gp-bar5/25 bg-gp-navy/40 text-gp-lightgray hover:border-gp-bar4/60 hover:bg-gp-navy/70;
+  }
+
+  .gp-btn-danger {
+    @apply gp-btn bg-gp-warn text-white hover:brightness-110 active:translate-y-px;
+  }
+
+  .gp-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-gp-bar5/25 bg-gp-abyss/50
+      px-2.5 py-1 font-body text-[11.5px] text-gp-darkgray;
+  }
+}

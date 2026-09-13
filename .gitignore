@@ -1,0 +1,7 @@
+node_modules/
+dist/
+frontend/.next/
+frontend/out/
+.env
+.mapcidade_last_connection.json
+.test-last-connection.json
